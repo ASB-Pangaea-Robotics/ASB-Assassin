@@ -41,7 +41,7 @@ h1, h2, h3 {
   font-family: 'Public Sans', sans-serif;
 }
 
-label, button, input {
+button, input {
   font-family: 'Inter', sans-serif;
 }
 
@@ -164,116 +164,4 @@ main {
   font-size: 0.875rem;
   margin-top: 0.5rem;
   font-weight: 500;
-}
-
-/* ===== Form ===== */
-.login-form {
-  display: flex;
-  flex-direction: column;
-  gap: 1.25rem;
-}
-
-.form-group {
-  display: flex;
-  flex-direction: column;
-}
-
-.form-label-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 0.375rem;
-}
-
-.form-label {
-  display: block;
-  font-size: 0.75rem;
-  font-weight: 700;
-  color: #d1d5db; /* gray-300 */
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  margin-bottom: 0.375rem;
-}
-
-.form-label-row .form-label {
-  margin-bottom: 0;
-}
-
-.forgot-link {
-  font-size: 0.75rem;
-  font-weight: 600;
-  color: var(--primary);
-  text-decoration: none;
-  transition: color 0.2s;
-}
-
-.forgot-link:hover {
-  color: var(--primary-container);
-}
-
-/* ===== Input Wrapper ===== */
-.input-wrapper {
-  position: relative;
-}
-
-.input-icon {
-  position: absolute;
-  left: 0.75rem;
-  top: 50%;
-  transform: translateY(-50%);
-  color: var(--outline);
-  font-size: 1.125rem;
-  pointer-events: none;
-}
-
-.form-input {
-  width: 100%;
-  padding: 0.75rem 1rem 0.75rem 2.5rem;
-  border: 1px solid #374151; /* gray-700 */
-  border-radius: 0.125rem;
-  background-color: #1f2937; /* gray-800 */
-  color: #ffffff;
-  font-size: 0.875rem;
-  outline: none;
-  transition: border-color 0.2s, box-shadow 0.2s;
-}
-
-.form-input::placeholder {
-  color: #6b7280; /* gray-500 */
-}
-
-.form-input:focus {
-  border-color: var(--primary);
-  box-shadow: 0 0 0 2px rgba(0, 101, 139, 0.4);
-}
-
-/* ===== Submit Button ===== */
-.submit-btn {
-  width: 100%;
-  background-color: var(--primary);
-  color: var(--on-primary);
-  padding: 0.875rem 1rem;
-  border: none;
-  border-radius: 0.125rem;
-  font-weight: 700;
-  font-size: 0.875rem;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  box-shadow: 0 10px 15px -3px rgba(0, 101, 139, 0.2), 0 4px 6px -4px rgba(0, 101, 139, 0.2);
-  transition: background-color 0.2s, transform 0.1s;
-}
-
-.submit-btn:hover {
-  background-color: rgba(0, 101, 139, 0.9);
-}
-
-.submit-btn:active {
-  transform: scale(0.98);
-}
-
-.submit-btn .material-symbols-outlined {
-  font-size: 1.125rem;
 }

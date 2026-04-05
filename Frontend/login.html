@@ -6,77 +6,29 @@
   <title>Access Terminal - Login</title>
   <link rel="stylesheet" href="login.css"/>
 </head>
-<body>
 
+<body>
   <main>
-    <!-- Background Decorative Blobs -->
     <div class="bg-decorative">
       <div class="bg-blob-top"></div>
       <div class="bg-blob-bottom"></div>
     </div>
 
     <div class="card-wrapper">
-      <!-- Login Card -->
       <div class="login-card">
 
-        <!-- Branding -->
         <div class="branding">
           <div class="brand-icon">
             <span class="material-symbols-outlined">terminal</span>
           </div>
-          <h1 class="brand-title">Access Terminal</h1>
+          <h1 class="brand-title">Blitz Access Terminal</h1>
           <p class="brand-subtitle">System Authentication Required</p>
         </div>
-
-        <!-- Form -->
-        <form action="#" method="POST" class="login-form">
-
-          <!-- Email Field-->
-          <div class="form-group">
-            <label class="form-label" for="username">Email</label>
-            <div class="input-wrapper">
-              <span class="material-symbols-outlined input-icon">person</span>
-              <input
-                class="form-input"
-                id="email"
-                name="email"
-                type="text"
-                placeholder="Enter your ASB email"
-                required
-              />
-            </div>
-          </div>
-
-          <!-- Password Field -->
-          <div class="form-group">
-            <div class="form-label-row">
-              <label class="form-label" for="password">Password</label>
-              <a class="forgot-link" href="#">Forgot Access?</a>
-            </div>
-            <div class="input-wrapper">
-              <span class="material-symbols-outlined input-icon">lock</span>
-              <input
-                class="form-input"
-                id="password"
-                name="password"
-                type="password"
-                placeholder="••••••••"
-                required
-              />
-            </div>
-          </div>
-
-          <!-- Submit Button -->
-          <button type="submit" class="submit-btn">
-            <span>Access System</span>
-            <span class="material-symbols-outlined">arrow_forward</span>
-          </button>
-
-        </form>
+        <div id="google-btn"></div>
       </div>
     </div>
   </main>
-
+  <script src="https://accounts.google.com/gsi/client"></script>
+  <script src="login.js"></script>
 </body>
 </html>
-

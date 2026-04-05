@@ -10,7 +10,7 @@
 
   <!-- Top Nav Bar (Desktop) -->
   <header class="top-nav">
-    <div class="nav-logo">TERMINAL_OS</div>
+    <div class="nav-logo">Blitz</div>
 
     <div class="nav-links">
       <a class="nav-link" href="operations.html">OPERATIONS</a>
@@ -23,15 +23,13 @@
         <button class="nav-icon-btn">
             <span class="material-symbols-outlined">notifications</span>
         </button>
-        <button class="nav-icon-btn">
-            <span class="material-symbols-outlined">terminal</span>
+        <button class="nav-icon-btn" onclick="signOut()">
+            <span class="material-symbols-outlined">logout</span>
         </button>
       </div>
       <div class="nav-user">
-        <span class="nav-username">USER_NAME</span>
-        <button class="nav-icon-btn">
-          <span class="material-symbols-outlined">account_circle</span>
-        </button>
+        <span class="nav-username" id="nav-username">USER_NAME</span>
+        <img id="nav-avatar" src="" alt="avatar" style="width:2rem;height:2rem;border-radius:9999px;border:1px solid var(--primary);display:none;"/>
       </div>
   </header>
 
@@ -152,5 +150,7 @@
   <div class="overlay-border"></div>
   <div class="scanline overlay-scanline"></div>
 
+  <script src="leaderboard.js"></script>
+  <script src="https://accounts.google.com/gsi/client"></script>
 </body>
 </html>

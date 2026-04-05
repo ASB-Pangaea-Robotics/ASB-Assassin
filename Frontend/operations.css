@@ -129,6 +129,13 @@ a { text-decoration: none; color: inherit; }
   gap: 1rem;
 }
 
+.nav-user {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-direction: row;
+}
+
 .nav-icon-btn {
   padding: 0.5rem;
   border-radius: 9999px;
