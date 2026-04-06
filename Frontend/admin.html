@@ -8,36 +8,42 @@
 </head>
 <body>
 
-  <!-- Header -->
-  <header class="top-header">
-    <div>
-      <nav class="header-nav">
-        <a class="header-nav-link" href="operations.html">OPERATIONS</a>
-        <a class="header-nav-link" href="leaderboard.html">LEADERBOARD</a>
-        <a class="header-nav-link active" href="admin.html">ADMIN</a>
-      </nav>
-    </div>
-    <div class="header-actions">
-      <button class="header-icon-btn">
-        <span class="material-symbols-outlined">settings</span>
-      </button>
-      <button class="header-icon-btn">
-        <span class="material-symbols-outlined">notifications</span>
-      </button>
-    </div>
-  </header>
+<nav class="top-nav">
+  <div class="nav-logo">Blitz</div>
 
-  <!-- Main Content -->
+  <div class="nav-links">
+    <a class="nav-link" href="operations.html">OPERATIONS</a>
+    <a class="nav-link" href="leaderboard.html">LEADERBOARD</a>
+    <a class="nav-link" href="shop.html">SHOP</a>
+    <a class="nav-link active" href="admin.html">ADMIN</a>
+  </div>
+
+   <div class="nav-right">
+    <div class="nav-icons">
+      <button class="nav-icon-btn">
+           <span class="material-symbols-outlined">notifications</span>
+      </button>
+      <button class="nav-icon-btn" onclick="signOut()">
+          <span class="material-symbols-outlined">logout</span>
+      </button>
+    </div>
+    <div class="nav-user">
+      <span class="nav-username" id="nav-username">USER_NAME</span>
+      <img id="nav-avatar" src="" alt="avatar" style="width:2rem;height:2rem;border-radius:9999px;border:1px solid var(--primary);display:none;"/>
+    </div>
+  </div>
+</nav>
+
   <main>
     <div class="main-grid">
-
-      <!-- Left: Video Review Section -->
       <section class="video-section">
 
         <div class="video-section-header">
           <h3 class="video-title">
             <span class="material-symbols-outlined">videocam</span>
-            Player Name -&gt; Target Name
+            <span id="player-name">Player Name</span>
+            <span> -&gt; </span> 
+            <span id="target-name">Target Name</span>
           </h3>
         </div>
 
@@ -184,6 +190,7 @@
 
     </div>
   </main>
-
+  <script src="admin.js"></script>
+  <script src="https://accounts.google.com/gsi/client"></script>
 </body>
 </html>

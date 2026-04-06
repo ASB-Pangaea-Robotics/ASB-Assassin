@@ -43,7 +43,6 @@ body {
   background-color: var(--background);
   color: var(--on-surface);
   min-height: 100vh;
-  /* dot grid background */
   background-image: radial-gradient(var(--surface-variant) 1px, transparent 1px);
   background-size: 24px 24px;
 }

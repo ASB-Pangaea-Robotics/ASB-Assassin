@@ -13,15 +13,12 @@ window.onload = function () {
 };
 
 function handleCredentialResponse(response) {
-  // response.credential is a JWT token — decode it to get user info
   const payload = parseJwt(response.credential);
 
-  // Save to localStorage so other pages can read it
   localStorage.setItem('user_name',    payload.name);
   localStorage.setItem('user_email',   payload.email);
   localStorage.setItem('user_picture', payload.picture);
 
-  // Redirect to operations page
   window.location.href = 'operations.html';
 }
 
