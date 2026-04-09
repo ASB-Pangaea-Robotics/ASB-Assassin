@@ -27,10 +27,10 @@ function handleCredentialResponse(response) {
     localStorage.setItem('user_name', data.name);
     localStorage.setItem('user_email', data.email);
     localStorage.setItem('user_picture', data.picture);
+
+    window.location.href = 'operations.html';
   })
   .catch(error => {
     console.error('Login: FAILED', error);
   })
-
-  window.location.href = 'operations.html';
 }

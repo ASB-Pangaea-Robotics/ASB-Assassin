@@ -23,3 +23,16 @@ function signOut() {
 
     window.location.href = 'login.html';
 }
+
+fetch('/api/operations')
+  .then(response => response.json())
+  .then(data => {
+    console.log('Backend Response: ', data);
+
+    document.querySelector('.target-image').src = data.target_image;
+    document.querySelector('.target-name').textContent = data.target_name;
+    document.querySelector('.target-grade-badge').textContent = data.target_grade;
+  })
+  .catch(error => {
+    console.error('Login: FAILED', error);
+  })

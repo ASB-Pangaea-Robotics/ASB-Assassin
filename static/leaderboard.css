@@ -384,17 +384,14 @@ main {
   font-size: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 0.05em;
+  background-color: var(--surface);
+  color: var(--neutral-400);
+  border: 1px solid rgba(12, 74, 110, 0.30);
 }
 
 .tab-btn.active {
   background-color: var(--primary);
   color: #000000;
-}
-
-.tab-btn.inactive {
-  background-color: var(--surface);
-  color: var(--neutral-400);
-  border: 1px solid rgba(12, 74, 110, 0.30);
 }
 
 .tab-btn.inactive:hover {
@@ -451,7 +448,7 @@ tbody tr.row-top:hover {
   background-color: rgba(14, 165, 233, 0.10);
 }
 
-tbody tr.row-default:hover {
+tbody tr:hover {
   background-color: rgba(14, 165, 233, 0.05);
 }
 
