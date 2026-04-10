@@ -38,4 +38,4 @@ def shop():
 
 
 
-app.run(host='127.0.0.5', port=80)
+# app.run(host='127.0.0.5', port=80, debug = False)

@@ -1,18 +1,18 @@
 window.addEventListener('DOMContentLoaded', function () {
   const name    = localStorage.getItem('user_name');
   const picture = localStorage.getItem('user_picture');
-
-  if (!name) {
-    window.location.href = 'login.html';
-    return;
-  }
+  //
+  // if (!name) {
+  //   window.location.href = 'login.html';
+  //   return;
+  // }
 
   document.getElementById('nav-username').textContent = name;
   document.getElementById('player-name').textContent = name;
 
-  const avatar = document.getElementById('nav-avatar');
-  avatar.src = picture;
-  avatar.style.display = 'block';
+  // const avatar = document.getElementById('nav-avatar');
+  // avatar.src = picture;
+  // avatar.style.display = 'block';
 });
 
 function signOut() {
