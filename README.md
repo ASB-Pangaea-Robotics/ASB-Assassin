@@ -1,6 +1,6 @@
-﻿# Backend Branch
+﻿# Main Branch
 
-This branch is exclusively for the backend code. This includes the MySQL and Flask code (tech stack at this current point).
+This branch contains the combined frontend and backend code.
 
 # Blitz@ASB
 Blitz is the ASB implementation of the famous "Assasin" game done in the US. This repository holds all the relevant code. 
