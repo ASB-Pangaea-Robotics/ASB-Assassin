@@ -22,6 +22,8 @@ function signOut() {
     localStorage.removeItem('user_name');
     localStorage.removeItem('user_email');
     localStorage.removeItem('user_picture');
+    localStorage.removeItem('user_grade');
+    localStorage.removeItem('token');
 
     google.accounts.id.disableAutoSelect();
 
@@ -37,25 +39,32 @@ buttons.forEach(button => {
   })
 });
 
-function requestData(group) {
-  fetch('/api/leaderboard', {
-    method: 'POST', 
-    body: JSON.stringify({
-      leaderboard_group: group
-    }),
-    headers: {
-      'Content-Type': 'application/json'
-    }
-  })
-      .then(response => response.json())
-      .then(data => {
-        console.log('Backend Repoonse: ', data);
+async function requestData(group) {
+  try{
+    const res = await fetch('/api/leaderboard', {
+      method: 'POST', 
+      body: JSON.stringify({
+        leaderboard_group: group,
+        token: localStorage.getItem('token')
+      }),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
 
-        displayLeaderboard(data);
-      })
-      .catch(error => {
-        console.error('leaderboard data fetching: FAILED', error);
-      });
+    if(!res.ok) {
+      throw new Error('Failed to fetch leaderboard data: ', res.status, res.statusText);
+    }
+
+    const data = await res.json();
+
+    console.log('Backend Response: ', data);
+
+    displayLeaderboard(data);
+  }
+  catch(error) {
+    console.error('Error fetching leaderboard data: ', error);
+  }
 }
 
 function displayLeaderboard(items) {

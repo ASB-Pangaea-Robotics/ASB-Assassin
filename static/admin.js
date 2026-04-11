@@ -1,10 +1,13 @@
 let reviewQueue = [];
 let currentReview = null;
 
+const operatorSelector = document.getElementById('operator-select');
+const targetSelector = document.getElementById('target-select');
+const reassignBtn = document.getElementById('reassign-btn');
+
 window.addEventListener('DOMContentLoaded', function () {
   const name    = localStorage.getItem('user_name');
   const picture = localStorage.getItem('user_picture');
-  const grade = localStorage.getItem('user_grade');
 
   // if (!name) {
   //   window.location.href = 'login.html';
@@ -19,24 +22,33 @@ window.addEventListener('DOMContentLoaded', function () {
   avatar.style.display = 'block';
 
   //Operator and target assignment
-  fetch('/api/reassign', {
-    method: 'POST', 
-    headers: { 'Content Type': 'application/json'},
-    body: JSON.stringify({ grade: grade})
-  })
-  .then(res => res.json())
-  .then(data => {
-    displayOperators(data.operators);
-    displayTargets(data.targets);
-  })
-
+  requestReassignments();
   loadPendingReviews();
 });
 
-//Target and Operator Assignment
-const operatorSelector = document.getElementById('operator-select');
-const targetSelector = document.getElementById('target-select');
+async function requestReassignments() {
+  try{
+    const res = await fetch('/api/reassign', {
+      method: 'POST', 
+      headers: { 'Content Type': 'application/json'},
+      body: JSON.stringify({ grade: localStorage.getItem('user_grade'), token: localStorage.getItem('token')})
+    });
 
+    if(!res.ok) {
+      throw new Error('Fetching operator and target list error: ', res.status, res.statusText);
+    }
+
+    const data = await res.json();
+    displayOperators(data.operators);
+    displayTargets(data.targets);
+  } 
+  catch(error) {
+    console.error('Fetching operator and target list error: ', error);
+    alert('fetching failed. Please try again.');
+  }
+}
+
+//Target and Operator Assignment
 function displayOperators(operators) {
   operatorSelector.innerHTML = '';
 
@@ -62,32 +74,44 @@ function displayTargets(targets) {
 }
 
 //Operator and Target Reassignment Submission
-const reassignBtn = document.getElementById('reassign-btn');
-
 reassignBtn.addEventListener('click', async () => {
-  await fetch('/api/confirm_reassign', {
-    method: 'POST', 
-    headers: { 'Content-Type': 'application/json' }, 
-    body: JSON.stringify({
-      operator_id: operatorSelector.value,
-      operator_name: operatorSelector.options[operatorSelector.selectedIndex].text,
-      target_id: targetSelector.value,
-      target_name: targetSelector.options[targetSelector.selectedIndex].text
-    })
-  })
+  try{
+    await fetch('/api/confirm_reassign', {
+      method: 'POST', 
+      headers: { 'Content-Type': 'application/json' }, 
+      body: JSON.stringify({
+        operator_id: operatorSelector.value,
+        operator_name: operatorSelector.options[operatorSelector.selectedIndex].text,
+        target_id: targetSelector.value,
+        target_name: targetSelector.options[targetSelector.selectedIndex].text, 
+        token: localStorage.getItem('token')
+      })
+    });
+  }
+  catch(error) {
+    console.error('Error submitting reassignment: ', error);
+    alert('Failed to submit reassignment. Please try again.');
+  }
 });
 
 //Video review stuff
-function loadPendingReviews() {
-  fetch('/pending_reviews')
-    .then(res => res.json())
-    .then(data => {
-      reviewQueue = data;
-      showNextReview();
-    })
-    .catch(() => {
-      document.getElementById('placeholder-text').textContent = 'Failed to load reviews.';
-    });
+async function loadPendingReviews() {
+  try{
+    const res = fetch('/pending_reviews');
+
+    if(!res.ok) {
+      throw new Error('Failed to load reviews: ', res.status, res.statusText);
+    }
+
+    const data = await res.json();
+
+    reviewQueue = data;
+    showNextReview();
+  }
+  catch(error) {
+    console.error('Failed to load reviews: ', error);
+    document.getElementById('placeholder-text').textContent = 'Failed to load reviews.';
+  }
 }
 
 function showNextReview() {
@@ -116,17 +140,26 @@ function showNextReview() {
   video.play().catch(() => {});
 }
 
-function submitDecision(decision) {
+async function submitDecision(decision) {
   if (!currentReview) return;
+  try{
+    const res = await fetch('/api/review_decision', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ log_id: currentReview.id, decision, token: localStorage.getItem('token') }),
+    });
 
-  fetch('/api/review_decision', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ log_id: currentReview.id, decision }),
-  })
-    .then(res => res.json())
-    .then(() => showNextReview())
-    .catch(() => alert('Failed to submit decision. Try again.'));
+    if(!res.ok) {
+      throw new Error('Failed to submit decision: ', res.status, res.statusText);
+    }
+
+    const data = await res.json();
+    showNextReview();
+  }
+  catch(error) {
+    console.log('Failed to submit decision: ', error);
+    alert('Failed to submit decision. Try again.');
+  }
 }
 
 // Google sign out
