@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>TACTICAL COMMAND | Videos</title>
+  <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;700;900&family=Inter:wght@400;500;600&family=Sora:wght@300;400;600&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="videopage.css"/>
+</head>
+<body>
+
+  <!-- Top Navigation Bar -->
+  <nav class="top-nav">
+    <div class="nav-logo">
+      <span class="material-symbols-outlined nav-logo-icon">videocam</span>
+      TACTICAL COMMAND
+    </div>
+
+    <div class="nav-links">
+      <a class="nav-link" href="{{ url_for('operations') }}">OPERATIONS</a>
+      <a class="nav-link" href="{{ url_for('leaderboard') }}">LEADERBOARD</a>
+      <a class="nav-link active" href="{{ url_for('videos') }}">VIDEOS</a>
+    </div>
+
+    <div class="nav-right">
+      <div class="nav-icons">
+        <button class="nav-icon-btn">
+          <span class="material-symbols-outlined">notifications</span>
+        </button>
+        <button class="nav-icon-btn" onclick="signOut()">
+          <span class="material-symbols-outlined">logout</span>
+        </button>
+      </div>
+      <div class="nav-user">
+        <span class="nav-username" id="nav-username">USER_NAME</span>
+        <img id="nav-avatar" src="" alt="avatar" class="nav-avatar" style="display:none;"/>
+      </div>
+    </div>
+  </nav>
+
+  <div class="page-wrapper">
+    <main class="video-main">
+      <header class="page-header">
+        <div class="section-label">
+          <span class="section-label-line"></span>
+          STREAM_CAPTURE
+        </div>
+        <h1 class="page-title">Video_Portal</h1>
+        <p class="page-subtitle">Waiting for Stream Data...</p>
+      </header>
+
+      <div class="video-container">
+        <!-- Portrait Video Area -->
+        <div class="video-frame">
+          <div class="video-gradient"></div>
+          
+          <!-- Viewfinder Corners -->
+          <div class="viewfinder-corner corner-tl"></div>
+          <div class="viewfinder-corner corner-tr"></div>
+          <div class="viewfinder-corner corner-bl"></div>
+          <div class="viewfinder-corner corner-br"></div>
+
+          <!-- Video Content -->
+          <div class="video-content">
+            <span class="material-symbols-outlined video-icon">sensors_off</span>
+            <p class="video-status">Waiting for Stream Data...</p>
+          </div>
+
+          <!-- Video Stats -->
+          <div class="video-stats">
+            <div class="stats-row">
+              <span class="stat-label">LATENCY:</span>
+              <span class="stat-value">12ms</span>
+            </div>
+            <div class="stats-row">
+              <span class="stat-label">BITRATE:</span>
+              <span class="stat-value">4500kbps</span>
+            </div>
+            <div class="progress-bar">
+              <div class="progress-fill"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Upload Section -->
+      <div class="upload-section">
+        <button class="btn-primary" onclick="openVideoUpload()">
+          <span class="material-symbols-outlined">videocam</span>
+          UPLOAD_VIDEO
+        </button>
+        <p class="upload-info">Submit your tactical video evidence</p>
+      </div>
+    </main>
+  </div>
+
+  <!-- Bottom Navigation -->
+  <nav class="bottom-nav">
+    <a class="bottom-nav-link" href="{{ url_for('operations') }}">
+      <span class="material-symbols-outlined">gps_fixed</span>
+      <span class="bottom-nav-label">OPERATIONS</span>
+    </a>
+    <a class="bottom-nav-link" href="{{ url_for('leaderboard') }}">
+      <span class="material-symbols-outlined">leaderboard</span>
+      <span class="bottom-nav-label">LEADERBOARD</span>
+    </a>
+    <a class="bottom-nav-link active" href="{{ url_for('videos') }}">
+      <span class="material-symbols-outlined">videocam</span>
+      <span class="bottom-nav-label">VIDEOS</span>
+    </a>
+    <a class="bottom-nav-link" href="{{ url_for('admin') }}">
+      <span class="material-symbols-outlined">shield_person</span>
+      <span class="bottom-nav-label">ADMIN</span>
+    </a>
+  </nav>
+
+  <!-- Hidden file input -->
+  <input type="file" id="video-file-input" accept="video/*" style="display:none">
+
+  <!-- Upload Modal -->
+  <div id="upload-modal" class="upload-modal" style="display:none;">
+    <div class="modal-content">
+      <p class="modal-label">UPLOADING_VIDEO_INTEL</p>
+      <p id="upload-status" class="modal-status">Preparing transmission...</p>
+      <button id="upload-close-btn" class="btn-modal" onclick="closeUploadModal()" style="display:none;">CLOSE</button>
+    </div>
+  </div>
+
+  <script>
+    const LOGIN_URL = "{{ url_for('login') }}";
+    const ADMIN_URL = "{{ url_for('admin') }}";
+    const OPERATIONS_URL = "{{ url_for('operations') }}";
+    const LEADERBOARD_URL = "{{ url_for('leaderboard') }}";
+    const VIDEOS_URL = "{{ url_for('videos') }}";
+
+    function openVideoUpload() {
+      const fileInput = document.getElementById('video-file-input');
+      fileInput.click();
+      
+      fileInput.addEventListener('change', function() {
+        if (this.files.length > 0) {
+          showUploadModal();
+          uploadVideo(this.files[0]);
+        }
+      });
+    }
+
+    function showUploadModal() {
+      const modal = document.getElementById('upload-modal');
+      modal.style.display = 'flex';
+    }
+
+    function closeUploadModal() {
+      const modal = document.getElementById('upload-modal');
+      modal.style.display = 'none';
+      document.getElementById('video-file-input').value = '';
+    }
+
+    function uploadVideo(file) {
+      const formData = new FormData();
+      formData.append('video', file);
+
+      const statusElement = document.getElementById('upload-status');
+      const closeButton = document.getElementById('upload-close-btn');
+
+      statusElement.textContent = `Uploading: ${file.name} (${(file.size / 1024 / 1024).toFixed(2)}MB)...`;
+
+      fetch('/upload-video', {
+        method: 'POST',
+        body: formData
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.success) {
+          statusElement.textContent = 'VIDEO_TRANSMISSION_SUCCESSFUL';
+          statusElement.style.color = '#00ff00';
+        } else {
+          statusElement.textContent = 'ERROR: ' + (data.error || 'Upload failed');
+          statusElement.style.color = '#ff0000';
+        }
+        closeButton.style.display = 'block';
+      })
+      .catch(error => {
+        statusElement.textContent = 'ERROR: ' + error.message;
+        statusElement.style.color = '#ff0000';
+        closeButton.style.display = 'block';
+      });
+    }
+
+    function signOut() {
+      window.location.href = LOGIN_URL;
+    }
+  </script>
+</body>
+</html>
