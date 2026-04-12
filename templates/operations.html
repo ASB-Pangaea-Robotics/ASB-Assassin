@@ -12,10 +12,10 @@
     <div class="nav-logo">Blitz</div>
 
     <div class="nav-links">
-      <a class="nav-link active" href="operations.html">OPERATIONS</a>
-      <a class="nav-link" href="leaderboard.html">LEADERBOARD</a>
-      <a class="nav-link" href="shop.html">SHOP</a>
-      <a class="nav-link" href="admin.html">ADMIN</a>
+      <a class="nav-link active" href="{{ url_for('operations') }}">OPERATIONS</a>
+      <a class="nav-link" href="{{ url_for('leaderboard') }}">LEADERBOARD</a>
+      <a class="nav-link" href="{{ url_for('shop') }}">SHOP</a>
+      <a class="nav-link" href="{{ url_for('admin') }}">ADMIN</a>
     </div>
 
     <div class="nav-right">
@@ -45,10 +45,37 @@
         <p class="page-subtitle">Eliminate All Potential Threats</p>
       </header>
 
+      <div class="power-card amber">
+        <div class="power-card-header">
+          <span class="power-name">MODE: COMBO PLATTER</span>
+          <span class="material-symbols-outlined power-icon">layers</span>
+        </div>
+        <p class="power-desc">All outstanding participants assigned multiple targets.</p>
+        <div class="power-status">DEACTIVATED</div>
+      </div>
+
+      <div class="power-card red active">
+        <div class="power-card-header">
+          <span class="power-name">MODE: FREE FOR ALL</span>
+          <span class="material-symbols-outlined power-icon">groups</span>
+        </div>
+        <p class="power-desc">Eliminate anyone within their circuit unrestricted.</p>
+        <div class="power-status">ACTIVATED</div>
+      </div>
+
+      <div class="power-card green active">
+        <div class="power-card-header">
+          <span class="power-name">MODE: BLITZ</span>
+          <span class="material-symbols-outlined power-icon">swords</span>
+        </div>
+        <p class="power-desc">All eliminated players are assigned targets.</p>
+        <div class="power-status">ACTIVATED</div>
+      </div>
+
       <div class="target-card">
         <div class="target-info">
           <div>
-            <span class="target-field-label">Identifier</span>
+            <span class="target-field-label">Target Type: Normal</span>
             <h3 class="target-name">Aadith Kacholia</h3>
             <span class="target-grade-badge">GRADE: 11</span>
           </div>
@@ -62,19 +89,19 @@
   </div>
 
   <nav class="bottom-nav">
-    <a class="bottom-nav-link active" href="operations.html">
+    <a class="bottom-nav-link active" href="{{ url_for('operations') }}">
       <span class="material-symbols-outlined">gps_fixed</span>
       <span class="bottom-nav-label">OPERATIONS</span>
     </a>
-    <a class="bottom-nav-link" href="leaderboard.html">
+    <a class="bottom-nav-link" href="{{ url_for('leaderboard') }}">
       <span class="material-symbols-outlined">leaderboard</span>
       <span class="bottom-nav-label">LEADERBOARD</span>
     </a>
-    <a class="bottom-nav-link" href="shop.html">
+    <a class="bottom-nav-link" href="{{ url_for('shop') }}">
       <span class="material-symbols-outlined">shopping_cart</span>
       <span class="bottom-nav-label">SHOP</span>
     </a>
-    <a class="bottom-nav-link" href="admin.html">
+    <a class="bottom-nav-link" href="{{ url_for('admin') }}">
       <span class="material-symbols-outlined">shield_person</span>
       <span class="bottom-nav-label">ADMIN</span>
     </a>
@@ -92,7 +119,15 @@
     </div>
   </div>
 
-  <script src="../static/operations.js"></script>
+  <script>
+    const LOGIN_URL = "{{ url_for('login') }}";
+    const ADMIN_URL = "{{ url_for('admin') }}";
+    //{# const ADMINLITE_URL = "{{ url_for('admin_lite') }}"; #}
+    const OPERATIONS_URL = "{{ url_for('operations') }}";
+    const SHOP_URL = "{{ url_for('shop') }}";
+    const LEADERBOARD_URL = "{{ url_for('leaderboard') }}";
+  </script>
+  <script src="{{ url_for('static', filename='operations.js') }}"></script>
   <script src="https://accounts.google.com/gsi/client"></script>
 </body>
 </html>

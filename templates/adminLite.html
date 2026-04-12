@@ -4,7 +4,7 @@
   <meta charset="utf-8"/>
   <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
   <title>TACTICAL COMMAND | Admin Console</title>
-  <link rel="stylesheet" href="../static/admin.css"/>
+  <link rel="stylesheet" href="../static/adminLite.css"/>
 </head>
 <body>
 
@@ -35,7 +35,6 @@
 </nav>
 
   <main>
-    <div class="main-grid">
       <section class="video-section">
 
         <div class="video-section-header">
@@ -89,95 +88,7 @@
             NO
           </button>
         </div>
-
       </section>
-
-      <!-- Right Column -->
-      <div class="right-col">
-
-        <!-- Assign Target -->
-        <section class="assign-section">
-          <div>
-            <h3 class="assign-heading">Assign Target</h3>
-            <p class="assign-subtext">Select operator and objective for synchronization.</p>
-          </div>
-
-          <div class="form-fields">
-            <!-- Operator select -->
-            <div class="field-group">
-              <label class="field-label">Select Operator</label>
-              <div class="select-wrap">
-                <select class="form-select" id="operator-select">
-                  <option>Ayaan Agarwal</option>
-                  <option>Prakhar Lele</option>
-                  <option>Yash Yajnik</option>
-                </select>
-                <span class="material-symbols-outlined select-icon">expand_more</span>
-              </div>
-            </div>
-
-            <!-- Target select -->
-            <div class="field-group">
-              <label class="field-label">Select Target</label>
-              <div class="select-wrap">
-                <select class="form-select" id="target-select">
-                  <option>Aadith Kacholia</option>
-                  <option>Aryaman Maheshwari</option>
-                  <option>Ali Khorakiwala</option>
-                </select>
-                <span class="material-symbols-outlined select-icon">expand_more</span>
-              </div>
-            </div>
-
-          </div>
-
-          <button class="btn-confirm" id="reassign-btn">CONFIRM ASSIGNMENT</button>
-        </section>
-
-        <!-- Tactical Powers Console -->
-        <section class="powers-section">
-          <div class="powers-header">
-            <span class="material-symbols-outlined powers-icon">electric_bolt</span>
-            <h3 class="powers-title">Tactical Powers Console</h3>
-          </div>
-
-          <div class="powers-grid">
-
-            <!-- COMBO PLATTER -->
-            <div class="power-card amber">
-              <div class="power-card-header">
-                <span class="power-name">COMBO PLATTER</span>
-                <span class="material-symbols-outlined power-icon">layers</span>
-              </div>
-              <p class="power-desc">All outstanding participants assigned multiple targets.</p>
-              <div class="power-status">READY FOR ACTIVATION</div>
-            </div>
-
-            <!-- FREE FOR ALL -->
-            <div class="power-card red">
-              <div class="power-card-header">
-                <span class="power-name">FREE FOR ALL</span>
-                <span class="material-symbols-outlined power-icon">groups</span>
-              </div>
-              <p class="power-desc">Eliminate anyone within their circuit unrestricted.</p>
-              <div class="power-status">READY FOR ACTIVATION</div>
-            </div>
-
-            <!-- VENDETTA -->
-            <div class="power-card green">
-              <div class="power-card-header">
-                <span class="power-name">BLITZ</span>
-                <span class="material-symbols-outlined power-icon">swords</span>
-              </div>
-              <p class="power-desc">All eliminated players are assigned targets.</p>
-              <div class="power-status">READY FOR ACTIVATION</div>
-            </div>
-
-          </div>
-        </section>
-
-      </div>
-    </div>
   </main>
 
   <nav class="bottom-nav">
@@ -198,6 +109,7 @@
       <span class="bottom-nav-label">ADMIN</span>
     </a>
   </nav>
+
   <script>
     const LOGIN_URL = "{{ url_for('login') }}";
     const ADMIN_URL = "{{ url_for('admin') }}";
@@ -206,7 +118,7 @@
     const SHOP_URL = "{{ url_for('shop') }}";
     const LEADERBOARD_URL = "{{ url_for('leaderboard') }}";
   </script>
-  <script src="{{ url_for('static', filename='admin.js') }}"></script>
+  <script src="{{ url_for('static', filename='adminLite.js') }}"></script>
   <script src="https://accounts.google.com/gsi/client"></script>
 </body>
 </html>

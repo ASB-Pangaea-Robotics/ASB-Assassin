@@ -346,6 +346,241 @@ main {
   font-size: 0.875rem;
 }
 
+/* ===== PURCHASE MODAL ===== */
+.modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+  z-index: 200;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  backdrop-filter: blur(4px);
+}
+
+.modal-overlay.open {
+  display: flex;
+}
+
+.modal {
+  background: var(--surface-container);
+  border: 1px solid var(--outline-variant);
+  border-top: 3px solid var(--primary);
+  border-radius: 0.25rem;
+  width: 100%;
+  max-width: 22rem;
+  padding: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6);
+}
+
+/* Modal header */
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.modal-title {
+  font-family: 'Public Sans', sans-serif;
+  font-size: 1.125rem;
+  font-weight: 900;
+  letter-spacing: -0.025em;
+  color: var(--on-surface);
+  text-transform: uppercase;
+}
+
+.modal-item-name {
+  font-family: 'Public Sans', sans-serif;
+  font-size: 0.75rem;
+  color: var(--primary);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-top: 0.125rem;
+}
+
+.modal-close {
+  background: none;
+  border: none;
+  color: var(--outline);
+  cursor: pointer;
+  padding: 0.25rem;
+  display: flex;
+  align-items: center;
+  transition: color 0.15s;
+}
+
+.modal-close:hover { color: var(--on-surface); }
+
+/* Divider */
+.modal-divider {
+  border: none;
+  border-top: 1px solid var(--outline-variant);
+  margin: 0;
+}
+
+/* Modal field rows */
+.modal-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.modal-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.625rem;
+  font-weight: 700;
+  color: var(--primary);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* Price display */
+.modal-price {
+  font-family: 'Public Sans', sans-serif;
+  font-weight: 900;
+  font-size: 1.5rem;
+  color: var(--on-surface);
+  letter-spacing: -0.025em;
+}
+
+.modal-price-currency {
+  font-size: 0.75rem;
+  color: var(--primary);
+  font-weight: 400;
+  margin-left: 0.25rem;
+}
+
+/* Quantity stepper */
+.qty-stepper {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  border: 1px solid var(--outline-variant);
+  border-radius: 0.125rem;
+  overflow: hidden;
+  width: fit-content;
+}
+
+.qty-btn {
+  background: var(--surface-variant);
+  border: none;
+  color: var(--on-surface);
+  width: 2.5rem;
+  height: 2.5rem;
+  font-size: 1.25rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.15s;
+  font-family: 'Public Sans', sans-serif;
+}
+
+.qty-btn:hover { background-color: var(--primary); color: #fff; }
+
+.qty-display {
+  width: 3rem;
+  height: 2.5rem;
+  text-align: center;
+  background: var(--surface);
+  color: var(--on-surface);
+  font-family: 'Public Sans', sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+  border: none;
+  outline: none;
+  /* read-only look */
+  cursor: default;
+  user-select: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Target select */
+.modal-select {
+  width: 100%;
+  background-color: var(--surface);
+  border: 1px solid var(--outline-variant);
+  padding: 0.65rem 0.75rem;
+  border-radius: 0.125rem;
+  font-size: 0.875rem;
+  font-family: 'Public Sans', sans-serif;
+  color: var(--on-surface);
+  appearance: none;
+  outline: none;
+  cursor: pointer;
+  transition: border-color 0.15s;
+}
+
+.modal-select:focus { border-color: var(--primary); }
+
+.modal-select-wrap {
+  position: relative;
+}
+
+.modal-select-icon {
+  position: absolute;
+  right: 0.6rem;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  color: var(--outline);
+  font-size: 1.125rem;
+}
+
+/* Action buttons */
+.modal-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+  margin-top: 0.25rem;
+}
+
+.btn-modal-cancel {
+  padding: 0.75rem;
+  background: transparent;
+  border: 1px solid var(--outline-variant);
+  color: var(--on-surface-variant);
+  font-family: 'Public Sans', sans-serif;
+  font-weight: 700;
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  border-radius: 0.125rem;
+  cursor: pointer;
+  transition: background-color 0.15s, color 0.15s;
+}
+
+.btn-modal-cancel:hover {
+  background-color: var(--surface-variant);
+  color: var(--on-surface);
+}
+
+.btn-modal-confirm {
+  padding: 0.75rem;
+  background: var(--primary);
+  border: none;
+  color: #ffffff;
+  font-family: 'Public Sans', sans-serif;
+  font-weight: 700;
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  border-radius: 0.125rem;
+  cursor: pointer;
+  transition: filter 0.15s, transform 0.1s;
+}
+
+.btn-modal-confirm:hover  { filter: brightness(1.15); }
+.btn-modal-confirm:active { transform: scale(0.97); }
+
 .bottom-nav {
   display: flex;
   position: fixed;

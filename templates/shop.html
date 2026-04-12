@@ -12,25 +12,27 @@
     <div class="nav-logo">Blitz</div>
 
     <div class="nav-links">
-      <a class="nav-link" href="operations.html">OPERATIONS</a>
-      <a class="nav-link" href="leaderboard.html">LEADERBOARD</a>
-      <a class="nav-link active" href="shop.html">SHOP</a>
-      <a class="nav-link" href="admin.html">ADMIN</a>
+      <a class="nav-link" href="{{ url_for('operations') }}">OPERATIONS</a>
+      <a class="nav-link" href="{{ url_for('leaderboard') }}">LEADERBOARD</a>
+      <a class="nav-link active" href="{{ url_for('shop') }}">SHOP</a>
+      <a class="nav-link" href="{{ url_for('admin') }}">ADMIN</a>
     </div>
 
     <div class="nav-right">
       <div class="nav-icons">
         <button class="nav-icon-btn">
-            <span class="material-symbols-outlined">notifications</span>
+          <span class="material-symbols-outlined">notifications</span>
         </button>
         <button class="nav-icon-btn" onclick="signOut()">
-            <span class="material-symbols-outlined">logout</span>
+          <span class="material-symbols-outlined">logout</span>
         </button>
       </div>
       <div class="nav-user">
         <span class="nav-username" id="nav-username">USER_NAME</span>
-        <img id="nav-avatar" src="" alt="avatar" style="width:2rem;height:2rem;border-radius:9999px;border:1px solid var(--primary);display:none;"/>
+        <img id="nav-avatar" src="" alt="avatar"
+          style="width:2rem;height:2rem;border-radius:9999px;border:1px solid var(--primary);display:none;"/>
       </div>
+    </div>
   </header>
 
   <main>
@@ -47,6 +49,7 @@
     <div class="shop-grid-wrap">
       <div class="shop-grid">
 
+        <!-- REVIVE -->
         <div class="shop-card">
           <div class="card-body">
             <h3 class="card-title">REVIVE</h3>
@@ -56,7 +59,7 @@
                 <span class="card-cost-label">COST</span>
                 <span class="card-price">2,000 <span class="card-price-currency">INR</span></span>
               </div>
-              <button class="btn-purchase">
+              <button class="btn-purchase" onclick="openReviveModal()">
                 <span class="material-symbols-outlined">shopping_bag</span>
                 PURCHASE
               </button>
@@ -64,6 +67,7 @@
           </div>
         </div>
 
+        <!-- BOUNTY -->
         <div class="shop-card">
           <div class="card-body">
             <h3 class="card-title">BOUNTY</h3>
@@ -73,7 +77,7 @@
                 <span class="card-cost-label">COST</span>
                 <span class="card-price">500 <span class="card-price-currency">INR</span></span>
               </div>
-              <button class="btn-purchase">
+              <button class="btn-purchase" onclick="openPrivateBountyModal()">
                 <span class="material-symbols-outlined">shopping_bag</span>
                 PURCHASE
               </button>
@@ -81,6 +85,7 @@
           </div>
         </div>
 
+        <!-- PUBLIC_BOUNTY -->
         <div class="shop-card">
           <div class="card-body">
             <h3 class="card-title">PUBLIC_BOUNTY</h3>
@@ -90,24 +95,7 @@
                 <span class="card-cost-label">COST</span>
                 <span class="card-price">2,000 <span class="card-price-currency">INR</span></span>
               </div>
-              <button class="btn-purchase">
-                <span class="material-symbols-outlined">shopping_bag</span>
-                PURCHASE
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <div class="shop-card">
-          <div class="card-body">
-            <h3 class="card-title">TARGET_SWAP</h3>
-            <p class="card-desc">Re-randomize your current objective assignment. One-time use per operation.</p>
-            <div class="card-footer">
-              <div class="card-cost-row">
-                <span class="card-cost-label">COST</span>
-                <span class="card-price">250 <span class="card-price-currency">INR</span></span>
-              </div>
-              <button class="btn-purchase">
+              <button class="btn-purchase" onclick="openPublicBountyModal()">
                 <span class="material-symbols-outlined">shopping_bag</span>
                 PURCHASE
               </button>
@@ -120,27 +108,174 @@
 
   </main>
 
-  <!-- Bottom Nav (Mobile Only) -->
+  <!-- Bottom Nav -->
   <nav class="bottom-nav">
-    <a class="bottom-nav-link" href="operations.html">
+    <a class="bottom-nav-link" href="{{ url_for('operations') }}">
       <span class="material-symbols-outlined">gps_fixed</span>
       <span class="bottom-nav-label">OPERATIONS</span>
     </a>
-    <a class="bottom-nav-link" href="leaderboard.html">
+    <a class="bottom-nav-link" href="{{ url_for('leaderboard') }}">
       <span class="material-symbols-outlined">leaderboard</span>
       <span class="bottom-nav-label">LEADERBOARD</span>
     </a>
-    <a class="bottom-nav-link active" href="shop.html">
+    <a class="bottom-nav-link active" href="{{ url_for('shop') }}">
       <span class="material-symbols-outlined">shopping_cart</span>
       <span class="bottom-nav-label">SHOP</span>
     </a>
-    <a class="bottom-nav-link" href="admin.html">
+    <a class="bottom-nav-link" href="{{ url_for('admin') }}">
       <span class="material-symbols-outlined">shield_person</span>
       <span class="bottom-nav-label">ADMIN</span>
     </a>
   </nav>
 
-  <script src="../static/shop.js"></script>
+  <!-- ===== REVIVE MODAL ===== -->
+  <div class="modal-overlay" id="revive-modal">
+    <div class="modal">
+      <!-- Header -->
+      <div class="modal-header">
+        <div>
+          <div class="modal-title">Confirm Purchase</div>
+          <div class="modal-item-name">REVIVE</div>
+        </div>
+        <button class="modal-close" onclick="closeReviveModal()">
+          <span class="material-symbols-outlined">close</span>
+        </button>
+      </div>
+
+      <hr class="modal-divider"/>
+
+      <!-- Price (read-only text) -->
+      <div class="modal-field">
+        <span class="modal-label">Total Price</span>
+        <div class="modal-price">
+          ₹<span>2,000</span>
+          <span class="modal-price-currency">INR</span>
+        </div>
+      </div>
+
+      <!-- Action buttons -->
+      <div class="modal-actions">
+        <button class="btn-modal-cancel" onclick="closeReviveModal()">Cancel</button>
+        <button class="btn-modal-confirm" onclick="confirmRevive()">Confirm</button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ===== PRIVATE BOUNTY MODAL ===== -->
+  <div class="modal-overlay" id="private-bounty-modal">
+    <div class="modal">
+      <!-- Header -->
+      <div class="modal-header">
+        <div>
+          <div class="modal-title">Confirm Purchase</div>
+          <div class="modal-item-name">PRIVATE_BOUNTY</div>
+        </div>
+        <button class="modal-close" onclick="closePrivateBountyModal()">
+          <span class="material-symbols-outlined">close</span>
+        </button>
+      </div>
+
+      <hr class="modal-divider"/>
+
+      <!-- Price (read-only text) -->
+      <div class="modal-field">
+        <span class="modal-label">Total Price</span>
+        <div class="modal-price">
+          ₹<span>500</span>
+          <span class="modal-price-currency">INR</span>
+        </div>
+      </div>
+
+      <!-- Hunter dropdown -->
+      <div class="modal-field">
+        <span class="modal-label">Select Hunter</span>
+        <div class="modal-select-wrap">
+          <select class="modal-select" id="private-hunter-select">
+            <!-- populated by JS -->
+          </select>
+          <span class="material-symbols-outlined modal-select-icon">expand_more</span>
+        </div>
+      </div>
+
+      <!-- Target dropdown -->
+      <div class="modal-field">
+        <span class="modal-label">Select Target</span>
+        <div class="modal-select-wrap">
+          <select class="modal-select" id="private-target-select">
+            <!-- populated by JS -->
+          </select>
+          <span class="material-symbols-outlined modal-select-icon">expand_more</span>
+        </div>
+      </div>
+
+      <hr class="modal-divider"/>
+
+      <!-- Action buttons -->
+      <div class="modal-actions">
+        <button class="btn-modal-cancel" onclick="closePrivateBountyModal()">Cancel</button>
+        <button class="btn-modal-confirm" onclick="confirmPrivateBounty()">Confirm</button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ===== PUBLIC BOUNTY MODAL ===== -->
+  <div class="modal-overlay" id="public-bounty-modal">
+    <div class="modal">
+      <!-- Header -->
+      <div class="modal-header">
+        <div>
+          <div class="modal-title">Confirm Purchase</div>
+          <div class="modal-item-name">PUBLIC_BOUNTY</div>
+        </div>
+        <button class="modal-close" onclick="closePublicBountyModal()">
+          <span class="material-symbols-outlined">close</span>
+        </button>
+      </div>
+
+      <hr class="modal-divider"/>
+
+      <!-- Price (read-only text) -->
+      <div class="modal-field">
+        <span class="modal-label">Total Price</span>
+        <div class="modal-price">
+          ₹<span>2,000</span>
+          <span class="modal-price-currency">INR</span>
+        </div>
+      </div>
+
+      <!-- Target dropdown -->
+      <div class="modal-field">
+        <span class="modal-label">Select Target</span>
+        <div class="modal-select-wrap">
+          <select class="modal-select" id="public-target-select">
+            <!-- populated by JS -->
+          </select>
+          <span class="material-symbols-outlined modal-select-icon">expand_more</span>
+        </div>
+      </div>
+
+      <hr class="modal-divider"/>
+
+      <!-- Action buttons -->
+      <div class="modal-actions">
+        <button class="btn-modal-cancel" onclick="closePublicBountyModal()">Cancel</button>
+        <button class="btn-modal-confirm" onclick="confirmPublicBounty()">Confirm</button>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    const LOGIN_URL = "{{ url_for('login') }}";
+    const ADMIN_URL = "{{ url_for('admin') }}";
+    //{# const ADMINLITE_URL = "{{ url_for('admin_lite') }}"; #}
+    const OPERATIONS_URL = "{{ url_for('operations') }}";
+    const SHOP_URL = "{{ url_for('shop') }}";
+    const LEADERBOARD_URL = "{{ url_for('leaderboard') }}";
+  </script>
+  <script src="{{ url_for('static', filename='shop.js') }}"></script>
   <script src="https://accounts.google.com/gsi/client"></script>
 </body>
 </html>

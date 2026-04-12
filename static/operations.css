@@ -22,6 +22,22 @@
   --background:               #2b2b2b;
   --on-background:            #e2e2e6;
 
+  --tactical-blue:    #7ca9dc;
+  --sky-400:          #38bdf8;
+  --tertiary:         #835500;
+  --tertiary-amber:   #de9722;
+  --error:            #ba1a1a;
+  --green-500:        #22c55e;
+
+  --neutral-100:      #f5f5f5;
+  --neutral-200:      #e5e5e5;
+  --neutral-400:      #a3a3a3;
+  --neutral-500:      #737373;
+  --neutral-600:      #525252;
+  --neutral-700:      #404040;
+  --neutral-800:      #262626;
+  --neutral-900:      #171717;
+
   --nav-bg:                     #1a1c1c;
 
   --border-radius:            4px;
@@ -181,7 +197,7 @@ main {
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  margin-bottom: 0.5rem;
+  margin-right: 0.5rem;
 }
 
 .section-label-line {
@@ -211,6 +227,88 @@ main {
   margin-top: 0.5rem;
   max-width: 28rem;
 }
+
+.power-card.active {
+  background-color: #363636;
+  padding: 1rem;
+  border-radius: 0 var(--border-radius-lg) var(--border-radius-lg) 0;
+  box-shadow: 0 4px 6px -1px rgba(0,0,0,0.3);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.15s;
+  border-left: 4px solid transparent;
+}
+
+.power-card {
+  background-color: var(--neutral-900);
+  padding: 1rem;
+  border-radius: 0 var(--border-radius-lg) var(--border-radius-lg) 0;
+  box-shadow: 0 4px 6px -1px rgba(0,0,0,0.3);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.15s;
+  border-left: 4px solid transparent;
+}
+
+.power-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.power-name {
+  font-family: var(--font-headline);
+  font-weight: 900;
+  font-size: 0.75rem;
+}
+
+.power-icon {
+  color: var(--neutral-600);
+  transition: color 0.15s;
+}
+
+.power-desc {
+  font-size: 0.625rem;
+  color: var(--neutral-400);
+  line-height: 1.4;
+}
+
+.power-status {
+  margin-top: 0.5rem;
+  font-size: 0.5625rem;
+  font-weight: 700;
+  color: var(--neutral-600);
+  letter-spacing: -0.025em;
+  text-transform: uppercase;
+}
+
+.power-card.amber.active  { border-left-color: var(--tertiary-amber); }
+.power-card.amber.active .power-name  { color: var(--tertiary-amber); }
+.power-card.amber.active .power-icon  { color: var(--tertiary-amber); }
+
+.power-card.amber  { border-left-color: var(--neutral-400); }
+.power-card.amber .power-name  { color: var(--neutral-400); }
+.power-card.amber .power-icon  { color: var(--neutral-400); }
+
+.power-card.red.active    { border-left-color: var(--error); }
+.power-card.red.active .power-name    { color: var(--error); }
+.power-card.red.active .power-icon    { color: var(--error); }
+
+.power-card.red  { border-left-color: var(--neutral-400); }
+.power-card.red .power-name  { color: var(--neutral-400); }
+.power-card.red .power-icon  { color: var(--neutral-400); }
+
+.power-card.green.active   { border-left-color: var(--green-500); }
+.power-card.green.active .power-name   { color: var(--green-500); }
+.power-card.green.active .power-icon   { color: var(--green-500); }
+
+.power-card.green  { border-left-color: var(--neutral-400); }
+.power-card.green .power-name  { color: var(--neutral-400); }
+.power-card.green .power-icon  { color: var(--neutral-400); }
 
 .target-card {
   position: relative;

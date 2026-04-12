@@ -1,8 +1,6 @@
-/* ===== Google Fonts ===== */
 @import url('https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;700;900&family=Inter:wght@400;500;600&family=Sora:wght@300;400;600&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap');
 
-/* ===== CSS Variables ===== */
 :root {
   --tactical-blue:    #7ca9dc;
   --sky-400:          #38bdf8;
@@ -177,15 +175,6 @@ button { cursor: pointer; }
   main { padding-bottom: 5rem; }
 }
 
-.main-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 2rem;
-  max-width: 80rem;
-  margin: 0 auto;
-  padding: 0 1rem;
-}
-
 @media (min-width: 1024px) {
   .main-grid { grid-template-columns: 7fr 5fr; }
 }
@@ -322,6 +311,7 @@ button { cursor: pointer; }
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1rem;
+  margin: 0.8rem;
 }
 
 .btn-yes {
@@ -365,201 +355,6 @@ button { cursor: pointer; }
 .btn-no:hover { background-color: var(--neutral-700); }
 .btn-no:active { transform: scale(0.95); }
 .btn-no .material-symbols-outlined { font-size: 1.875rem; }
-
-/* ===== RIGHT COLUMN ===== */
-.right-col {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-}
-
-/* ===== ASSIGN TARGET SECTION ===== */
-.assign-section {
-  background-color: rgba(23,23,23,0.50);
-  border: 1px solid var(--neutral-800);
-  border-radius: 0.75rem;
-  padding: 1.5rem;
-  margin: 1.5rem;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-.assign-heading {
-  font-family: var(--font-headline);
-  font-size: 1.125rem;
-  font-weight: 700;
-  color: var(--on-bg);
-  text-transform: uppercase;
-  letter-spacing: -0.025em;
-}
-
-.assign-subtext {
-  color: var(--neutral-500);
-  font-size: 0.75rem;
-  margin-top: 0.25rem;
-}
-
-.form-fields {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-.field-group {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
-.field-label {
-  font-size: 0.625rem;
-  font-weight: 700;
-  color: var(--tactical-blue);
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  font-family: var(--font-label);
-}
-
-.select-wrap {
-  position: relative;
-}
-
-.form-select {
-  width: 100%;
-  background-color: var(--neutral-800);
-  border: 1px solid var(--neutral-700);
-  padding: 0.75rem;
-  border-radius: 0.25rem;
-  font-size: 0.875rem;
-  font-family: var(--font-headline);
-  color: var(--on-bg);
-  appearance: none;
-  outline: none;
-  transition: border-color 0.15s;
-  cursor: pointer;
-}
-
-.form-select:focus { border-color: var(--tactical-blue); }
-
-.select-icon {
-  position: absolute;
-  right: 0.75rem;
-  top: 50%;
-  transform: translateY(-50%);
-  pointer-events: none;
-  color: var(--neutral-500);
-}
-
-.btn-confirm {
-  margin-top: 1rem;
-  width: 100%;
-  padding: 1rem;
-  background-color: var(--tactical-blue);
-  color: var(--neutral-900);
-  font-family: var(--font-headline);
-  font-weight: 700;
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  border: none;
-  border-radius: 0.25rem;
-  transition: filter 0.15s, transform 0.1s;
-}
-
-.btn-confirm:hover { filter: brightness(1.10); }
-.btn-confirm:active { transform: scale(0.98); }
-
-/* ===== TACTICAL POWERS CONSOLE ===== */
-.powers-section {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-.powers-header {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.powers-icon {
-  color: var(--tertiary-amber);
-}
-
-.powers-title {
-  font-family: var(--font-headline);
-  font-size: 1.125rem;
-  font-weight: 700;
-  color: var(--on-bg);
-  text-transform: uppercase;
-  letter-spacing: -0.025em;
-}
-
-.powers-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0.75rem;
-}
-
-/* Power Card base */
-.power-card {
-  background-color: var(--neutral-900);
-  padding: 1rem;
-  border-radius: 0.25rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  cursor: pointer;
-  transition: background-color 0.15s;
-  border-left: 4px solid transparent;
-}
-
-.power-card:hover { background-color: var(--neutral-800); }
-
-.power-card-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-}
-
-.power-name {
-  font-family: var(--font-headline);
-  font-weight: 900;
-  font-size: 0.75rem;
-}
-
-.power-icon {
-  color: var(--neutral-600);
-  transition: color 0.15s;
-}
-
-.power-desc {
-  font-size: 0.625rem;
-  color: var(--neutral-400);
-  line-height: 1.4;
-}
-
-.power-status {
-  margin-top: 0.5rem;
-  font-size: 0.5625rem;
-  font-weight: 700;
-  color: var(--neutral-600);
-  letter-spacing: -0.025em;
-  text-transform: uppercase;
-}
-
-.power-card.amber  { border-left-color: var(--tertiary-amber); }
-.power-card.amber .power-name  { color: var(--tertiary-amber); }
-.power-card.amber:hover .power-icon  { color: var(--tertiary-amber); }
-
-.power-card.red    { border-left-color: var(--error); }
-.power-card.red .power-name    { color: var(--error); }
-.power-card.red:hover .power-icon    { color: var(--error); }
-
-.power-card.green   { border-left-color: var(--green-500); }
-.power-card.green .power-name   { color: var(--green-500); }
-.power-card.green:hover .power-icon   { color: var(--green-500); }
 
 .bottom-nav {
   display: flex;

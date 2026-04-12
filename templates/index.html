@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>Blitz - Tactical Performance</title>
+  <link rel="stylesheet" href="../static/index.css"/>
+</head>
+<body>
+
+  <main class="main-canvas tactical-bg">
+
+    <!-- Dot Grid Overlay -->
+    <div class="grid-overlay"></div>
+
+    <!-- Hero Content -->
+    <div class="hero">
+
+      <!-- Eyebrow -->
+      <div class="hero-eyebrow">Tactical Interface v1.0</div>
+
+      <!-- Giant Title -->
+      <h1 class="hero-title">BLITZ</h1>
+
+      <!-- Login Button -->
+      <div class="btn-wrap">
+        <a class="btn-login" href="{{ url_for('login') }}">
+          LOG IN
+          <div class="btn-corner-tr"></div>
+          <div class="btn-corner-bl"></div>
+        </a>
+      </div>
+
+      <!-- Scanning Line -->
+      <div class="scan-bar">
+        <div class="scan-fill"></div>
+      </div>
+
+    </div>
+
+    <!-- Corner Accents -->
+    <div class="corner-tl"></div>
+    <div class="corner-br"></div>
+
+    <!-- Status Indicator -->
+    <div class="status-indicator">
+      <div class="status-dot"></div>
+      <span class="status-text">System Online</span>
+    </div>
+
+  </main>
+</body>
+</html>

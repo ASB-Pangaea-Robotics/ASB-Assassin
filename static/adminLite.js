@@ -1,10 +1,6 @@
 let reviewQueue = [];
 let currentReview = null;
 
-const operatorSelector = document.getElementById('operator-select');
-const targetSelector = document.getElementById('target-select');
-const reassignBtn = document.getElementById('reassign-btn');
-
 window.addEventListener('DOMContentLoaded', function () {
   const name = localStorage.getItem('blitzer_name');
 
@@ -16,77 +12,8 @@ window.addEventListener('DOMContentLoaded', function () {
   document.getElementById('nav-username').textContent = name || 'USER_NAME';
   document.getElementById('user-name').textContent = name || 'USER_NAME';
 
-  //Operator and target assignment
-  requestReassignments();
+  //Load Video Reviews
   loadPendingReviews();
-});
-
-async function requestReassignments() {
-  try{
-    const res = await fetch('/api/reassign', {
-      method: 'POST', 
-      headers: { 'Content Type': 'application/json'},
-      body: JSON.stringify({ grade: localStorage.getItem('user_grade'), token: localStorage.getItem('token')})
-    });
-
-    if(!res.ok) {
-      throw new Error('Fetching operator and target list error: ', res.status, res.statusText);
-    }
-
-    const data = await res.json();
-    displayOperators(data.operators);
-    displayTargets(data.targets);
-  } 
-  catch(error) {
-    console.error('Fetching operator and target list error: ', error);
-    alert('fetching failed. Please try again.');
-  }
-}
-
-//Target and Operator Assignment
-function displayOperators(operators) {
-  operatorSelector.innerHTML = '';
-
-  operators.forEach(operator => {
-    const option = document.createElement('option');
-    option.value = operator.id;
-    option.textContent = operator.name;
-
-    operatorSelector.appendChild(option);
-  })
-}
-
-function displayTargets(targets) {
-  targetSelector.innerHTML = '';
-
-  targets.forEach(target => {
-    const option = document.createElement('option');
-    option.value = target.id;
-    option.textContent = target.name;
-
-    targetSelector.appendChild(option);
-  })
-}
-
-//Operator and Target Reassignment Submission
-reassignBtn.addEventListener('click', async () => {
-  try{
-    await fetch('/api/confirm_reassign', {
-      method: 'POST', 
-      headers: { 'Content-Type': 'application/json' }, 
-      body: JSON.stringify({
-        operator_id: operatorSelector.value,
-        operator_name: operatorSelector.options[operatorSelector.selectedIndex].text,
-        target_id: targetSelector.value,
-        target_name: targetSelector.options[targetSelector.selectedIndex].text, 
-        token: localStorage.getItem('token')
-      })
-    });
-  }
-  catch(error) {
-    console.error('Error submitting reassignment: ', error);
-    alert('Failed to submit reassignment. Please try again.');
-  }
 });
 
 //Video review stuff
